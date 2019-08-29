@@ -91,30 +91,30 @@ import Foundation
 
 
 
-//var ptr = UnsafeMutablePointer<Int>.allocate(capacity: 3)
-//ptr.initialize(to: 10)
-//(ptr + 1).initialize(to: 20)
-//(ptr + 2).initialize(to: 30)
-//
-//print(ptr.pointee)  // 10
-//print(ptr.successor().pointee) // 20
-//print(ptr.successor().successor().pointee) // 30
-//
-//ptr.deinitialize(count: 3)
-//ptr.deallocate()
+var ptr = UnsafeMutablePointer<Int>.allocate(capacity: 3)
+ptr.initialize(to: 10)
+(ptr + 1).initialize(to: 20)
+(ptr + 2).initialize(to: 30)
 
+print(ptr.pointee)  // 10
+print((ptr + 1).pointee) // 20
+print((ptr + 2).pointee) // 30
 
-
-
-var ptr = UnsafeMutableRawPointer.allocate(byteCount: 16, alignment: 1)
-
-// assumingMemoryBound 返回 UnsafeMutablePointer<T>类型
-ptr.assumingMemoryBound(to: Int.self).pointee = 10
-(ptr + 8).assumingMemoryBound(to: Int.self).pointee = 20
-
-print( unsafeBitCast(ptr, to: UnsafePointer<Int>.self).pointee ) // 10
-print( unsafeBitCast(ptr + 8, to: UnsafePointer<Int>.self).pointee ) // 20
+ptr.deinitialize(count: 3)
 ptr.deallocate()
+
+
+
+
+//var ptr = UnsafeMutableRawPointer.allocate(byteCount: 16, alignment: 1)
+//
+//// assumingMemoryBound 返回 UnsafeMutablePointer<T>类型
+//ptr.assumingMemoryBound(to: Int.self).pointee = 10
+//(ptr + 8).assumingMemoryBound(to: Int.self).pointee = 20
+//
+//print( unsafeBitCast(ptr, to: UnsafePointer<Int>.self).pointee ) // 10
+//print( unsafeBitCast(ptr + 8, to: UnsafePointer<Int>.self).pointee ) // 20
+//ptr.deallocate()
 
 
 
